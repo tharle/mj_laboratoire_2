@@ -5,7 +5,7 @@ using UnityEngine;
 public class WallBounceController : MonoBehaviour
 {
     [SerializeField]
-    private bool m_EnableBounce = true;
+    private bool m_EnableBounce = false;
 
     public bool GetIsBounce() { 
         return m_EnableBounce;

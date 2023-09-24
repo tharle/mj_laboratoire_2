@@ -15,7 +15,7 @@ public class CubePlayerTopViewController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         OnBougeCube();
     }
@@ -24,9 +24,6 @@ public class CubePlayerTopViewController : MonoBehaviour
     {
         var axisHorizontal = Input.GetAxis("Horizontal");
         var axisVertical = Input.GetAxis("Vertical");
-
-        Debug.Log($" axisHorizontal {axisHorizontal}");
-        Debug.Log($" axisVertical {axisVertical}");
         var vectorVelocity = m_Rigidbody.velocity;
 
         vectorVelocity.x = axisHorizontal * m_Speed;
