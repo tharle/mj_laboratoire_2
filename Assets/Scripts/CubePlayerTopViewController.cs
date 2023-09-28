@@ -6,7 +6,7 @@ public class CubePlayerTopViewController : MonoBehaviour
 {
 
     [SerializeField] 
-    private float m_Speed = 20f;
+    private float m_Speed = 20.0f;
 
     Rigidbody m_Rigidbody;
 
@@ -17,14 +17,14 @@ public class CubePlayerTopViewController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        OnBougeCube();
+        OnMoveCubePlayer();
     }
 
-    private void OnBougeCube()
+    private void OnMoveCubePlayer()
     {
-        var axisHorizontal = Input.GetAxis("Horizontal");
-        var axisVertical = Input.GetAxis("Vertical");
-        var vectorVelocity = m_Rigidbody.velocity;
+        float axisHorizontal = Input.GetAxis("Horizontal");
+        float axisVertical = Input.GetAxis("Vertical");
+        Vector3 vectorVelocity = m_Rigidbody.velocity;
 
         vectorVelocity.x = axisHorizontal * m_Speed;
         vectorVelocity.z = axisVertical * m_Speed;

@@ -15,24 +15,33 @@ public class CubePlayerExtraController : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        OnThrowCube();
+        OnThrowCubePlayer();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        var gameObjectColladed = collision.gameObject;
-        WallBounceController wallBounceController = gameObjectColladed.GetComponent<WallBounceController>();
-        if (wallBounceController != null && wallBounceController.GetIsBounce())
+        GameObject gameObjectColladed = collision.gameObject;        
+        Debug.Log($"COLISION 2 : {gameObject.name}");
+        if (gameObjectColladed.CompareTag("Wall"))
         {
-            var directionCube = gameObjectColladed.transform.position - transform.position;
-            // OnChangeDirection(directionCube);
-            Debug.Log($"ON COLLISION ENTER : {directionCube}");
-            m_Direction = directionCube;
-            OnThrowCube();
+            WallBounceController wallBounceController = gameObjectColladed.GetComponent<WallBounceController>();
+            Vector3 pointCollision = collision.contacts[0].point;
+            pointCollision.y = 0; // ignorer la diff entre Y
+            Vector3 directionCube = pointCollision - transform.position;
+            OnCollisionWall(wallBounceController, directionCube.normalized);  
         }
     }
 
-    private void OnThrowCube()
+    private void OnCollisionWall(WallBounceController wallBounceController, Vector3 direction)
+    {
+        if (wallBounceController.IsBounced())
+        {
+            m_Direction = direction;
+            OnThrowCubePlayer();
+        }
+    }
+
+    private void OnThrowCubePlayer()
     {
         m_Rigidbody.AddForce(Vector3.zero); // arreter le cube pour apliquer la nouvelle force
         m_Rigidbody.AddForce(m_Direction * m_Force);

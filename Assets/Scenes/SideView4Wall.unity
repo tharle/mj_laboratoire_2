@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 710995894}
   - component: {fileID: 710995898}
   - component: {fileID: 710995899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,6 +373,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 680158286960752387, guid: 38888f0be4cf8e947b670124a3b5a982, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 680158286960752387, guid: 38888f0be4cf8e947b670124a3b5a982, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 839025826175700983, guid: 38888f0be4cf8e947b670124a3b5a982, type: 3}
       propertyPath: m_EnableBounce
       value: 1

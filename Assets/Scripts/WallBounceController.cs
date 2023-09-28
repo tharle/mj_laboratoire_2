@@ -7,7 +7,7 @@ public class WallBounceController : MonoBehaviour
     [SerializeField]
     private bool m_EnableBounce = false;
 
-    public bool GetIsBounce() { 
+    public bool IsBounced() { 
         return m_EnableBounce;
     }
 }
