@@ -17,6 +17,15 @@ public class CubePlayerExtraController : MonoBehaviour
         OnThrowCubePlayer();
     }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        GameObject gameObjectColladed = collider.gameObject;
+        if (gameObjectColladed.CompareTag(ItemBooster.GetTag()))
+        {
+            OnConsumeItem(gameObjectColladed);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(Obstacle.GetTag()))
@@ -39,7 +48,20 @@ public class CubePlayerExtraController : MonoBehaviour
 
     private void OnThrowCubePlayer()
     {
-        m_Rigidbody.velocity = Vector3.zero; // arreter le cube pour apliquer la nouvelle force
-        m_Rigidbody.AddForce(m_Direction.normalized * m_Force);
+        OnThrowCubePlayer(m_Force);
+    }
+
+    private void OnThrowCubePlayer(float force, bool restartVelocity = true)
+    {
+        if(restartVelocity) m_Rigidbody.velocity = Vector3.zero; // arreter le cube pour apliquer la nouvelle force
+        m_Rigidbody.AddForce(m_Direction.normalized * force);
+    }
+
+    private void OnConsumeItem(GameObject itemGameObject)
+    {
+        ItemBooster itemBooster = itemGameObject.GetComponent<ItemBooster>();
+        m_Force += itemBooster.GetForce(); // maj de la force pour chaque collision
+        OnThrowCubePlayer(itemBooster.GetForce(), false); // ajoute la force acutel dans la meme direction
+        Destroy(itemGameObject);
     }
 }
