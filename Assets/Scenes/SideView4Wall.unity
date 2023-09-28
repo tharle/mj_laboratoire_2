@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: m_EnableBounce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7331035054550666832, guid: 38888f0be4cf8e947b670124a3b5a982, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 8109362068151512456, guid: 38888f0be4cf8e947b670124a3b5a982, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

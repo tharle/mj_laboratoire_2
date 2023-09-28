@@ -22,17 +22,17 @@ public class CubePlayerSideViewController : MonoBehaviour
     {
         GameObject gameObjectColladed = collision.gameObject;
 
-        if (gameObjectColladed.CompareTag("Wall"))
+        if (gameObjectColladed.CompareTag(Obstacle.GetTag()))
         {
             m_Direction *= -1;
-            WallBounceController wallBounceController = gameObjectColladed.GetComponent<WallBounceController>();
-            OnCollisionWall(wallBounceController);
+            Obstacle obstacle = gameObjectColladed.GetComponent<Obstacle>();
+            OnCollisionWall(obstacle);
         }
     }
 
-    private void OnCollisionWall(WallBounceController wallBounceController)
+    private void OnCollisionWall(Obstacle obstacle)
     {
-        if (wallBounceController.IsBounced())
+        if (obstacle.IsBounced())
         { 
             OnThrowCubePlayer();
         }

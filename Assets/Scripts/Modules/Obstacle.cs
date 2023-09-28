@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallBounceController : MonoBehaviour
+public abstract class  Obstacle : MonoBehaviour
 {
     [SerializeField]
     private bool m_EnableBounce = false;
-
-    [SerializeField]
-    private Vector3 m_Normal = Vector3.left;
 
     public bool IsBounced() { 
         return m_EnableBounce;
     }
 
-    public Vector3 GetNormal()
+    public static string GetTag()
     {
-        return m_Normal;
+        return "Obstacle";
     }
+
+    public abstract Vector3 GetNormal();
 }
