@@ -6,58 +6,73 @@ using UnityEngine;
 public class CubePlayerExtraController : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 m_Direction = Vector3.left;
-
+    private Vector3 m_Direction = Vector3.left + Vector3.forward;
     [SerializeField]
     private float m_Force = 800;
+
+    /// <summary>
+    /// Utilisé dans le calculs pour trouver le vector de direction de la colition
+    /// </summary>
+    Vector3 m_PositionLastCollision;
 
     Rigidbody m_Rigidbody;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_PositionLastCollision = transform.position;
         OnThrowCubePlayer();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject gameObjectColladed = collision.gameObject;        
-        Debug.Log($"COLISION 2 : {gameObject.name}");
-        if (gameObjectColladed.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            WallBounceController wallBounceController = gameObjectColladed.GetComponent<WallBounceController>();
-            Vector3 pointCollision = collision.contacts[0].point;
-            pointCollision.y = 0; // ignorer la diff entre Y
-            Vector3 directionCube = pointCollision - transform.position;
-            OnCollisionWall(wallBounceController, directionCube.normalized);  
+           OnCollisionWall(collision);
         }
     }
 
-    private void OnCollisionWall(WallBounceController wallBounceController, Vector3 direction)
+    private void OnCollisionWall(Collision collision)
     {
-        if (wallBounceController.IsBounced())
+        GameObject gameObjectColladed = collision.gameObject;
+        WallBounceController wallBounceController = gameObjectColladed.GetComponent<WallBounceController>();
+        Vector3 pointCollision = calculMediumBetweenContactPoints(collision.contacts);
+        Vector3 directionCube = calculDirection(pointCollision, m_PositionLastCollision);
+        directionCube = Vector3.Reflect(directionCube, wallBounceController.GetNormal());
+
+        OnCollisionObstacle(directionCube, wallBounceController.IsBounced());
+    }
+
+    private Vector3 calculDirection(Vector3 pointStart, Vector3 pointEnd)
+    {
+        return pointStart - pointEnd;
+    }
+
+    private Vector3 calculMediumBetweenContactPoints(ContactPoint[] contactPoints)
+    {
+        Vector3 result = Vector3.zero;
+        foreach (ContactPoint contactPoint in contactPoints)
         {
-            m_Direction = direction;
+            result += contactPoint.point;
+        }
+        result /= contactPoints.Length;
+        return result;
+    }
+
+    private void OnCollisionObstacle(Vector3 directionCube, bool isBouncedObstacle)
+    {
+        directionCube.y = 0;
+        if (isBouncedObstacle)
+        {
+            m_Direction = directionCube;
             OnThrowCubePlayer();
         }
+
+        m_PositionLastCollision = transform.position;
     }
 
     private void OnThrowCubePlayer()
     {
-        m_Rigidbody.AddForce(Vector3.zero); // arreter le cube pour apliquer la nouvelle force
-        m_Rigidbody.AddForce(m_Direction * m_Force);
-    }
-
-    private void OnChangeDirection(Vector3 directionCube)
-    {
-        m_Direction = Vector3.zero;
-        if (directionCube.x > 0)
-            m_Direction += Vector3.right;
-        else if (directionCube.x < 0)
-            m_Direction += Vector3.left;
-
-        if (directionCube.y > 0)
-            m_Direction += Vector3.forward;
-        else if (directionCube.y < 0)
-            m_Direction += Vector3.back;
+        m_Rigidbody.velocity = Vector3.zero; // arreter le cube pour apliquer la nouvelle force
+        m_Rigidbody.AddForce(m_Direction.normalized * m_Force);
     }
 }
