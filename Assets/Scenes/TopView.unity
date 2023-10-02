@@ -440,6 +440,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 208062949711052972, guid: 05019ec578087294d91c530b5fa50e36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 208062949711052972, guid: 05019ec578087294d91c530b5fa50e36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 3002571833882538244, guid: 05019ec578087294d91c530b5fa50e36, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -590,7 +598,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 19.614916
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

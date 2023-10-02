@@ -8,7 +8,7 @@ using UnityEngine;
 public class Hurdle : Obstacle
 {
 
-    private const string m_AnimationKeyDurability = "durability";
+    private const string ANIMATION_KEY_DURABILITY = "durability";
 
     [SerializeField]
     private int m_durability = 3;
@@ -34,7 +34,7 @@ public class Hurdle : Obstacle
 
     private void UpdateAnimation() 
     {
-        m_animator.SetInteger(m_AnimationKeyDurability, m_durability);
+        m_animator.SetInteger(ANIMATION_KEY_DURABILITY, m_durability);
     }
 
 }

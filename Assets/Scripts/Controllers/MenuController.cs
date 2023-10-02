@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
 
-    public const string m_SceneTopView = "TopView";
-    public const string m_SceneSideView = "SideView2Wall";
-    public const string m_SceneExtra = "SideView4Wall";
+    public const string SCENE_TOP_VIEW = "TopView";
+    public const string SCENE_SIDE_VIEW = "SideView2Wall";
+    public const string SCENE_EXTRA = "SideView4Wall";
 
     [SerializeField]
     private GameObject m_menu;
@@ -48,17 +48,17 @@ public class MenuController : MonoBehaviour
 
     public void OnClickTopView()
     {
-        ChangeScene(m_SceneTopView);
+        ChangeScene(SCENE_TOP_VIEW);
     }
 
     public void OnClickSideView()
     {
-        ChangeScene(m_SceneSideView);
+        ChangeScene(SCENE_SIDE_VIEW);
     }
 
     public void OnClickExtra()
     {
-        ChangeScene(m_SceneExtra);
+        ChangeScene(SCENE_EXTRA);
     }
 
     public void OnClickQuit()

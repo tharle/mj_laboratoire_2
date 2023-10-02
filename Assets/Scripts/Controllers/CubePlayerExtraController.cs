@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CubePlayerExtraController : MonoBehaviour
 {
-    private const int m_OptionRandom_NordEst    = 0;
-    private const int m_OptionRandom_NordWest   = 1;
-    private const int m_OptionRandom_SouthEst   = 2;
-    private const int m_OptionRandom_SouthWest  = 3;
+    private const int OPTION_RANDOM_NORTH_EAST = 0;
+    private const int OPTION_RANDOM_NORTH_WEST = 1;
+    private const int OPTION_RANDOM_SOUTH_EAST = 2;
+    private const int OPTION_RANDOM_SOUTH_WEST = 3;
 
     [SerializeField]
     private Vector3 m_Direction;
@@ -27,16 +27,16 @@ public class CubePlayerExtraController : MonoBehaviour
         int optionRandom = (int) Mathf.Round(Random.Range(0, 4));
 
         switch (optionRandom) { 
-            case m_OptionRandom_NordEst:
+            case OPTION_RANDOM_NORTH_EAST:
                 m_Direction = Vector3.left + Vector3.forward;
             break;
-            case m_OptionRandom_NordWest:
+            case OPTION_RANDOM_NORTH_WEST:
                 m_Direction = Vector3.right + Vector3.forward;
             break;
-            case m_OptionRandom_SouthEst:
+            case OPTION_RANDOM_SOUTH_EAST:
                 m_Direction = Vector3.left + Vector3.back;
             break;
-            case m_OptionRandom_SouthWest:
+            case OPTION_RANDOM_SOUTH_WEST:
             default:
                 m_Direction = Vector3.right + Vector3.back;
             break;
