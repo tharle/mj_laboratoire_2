@@ -16,5 +16,5 @@ public abstract class  Obstacle : MonoBehaviour
         return "Obstacle";
     }
 
-    public abstract Vector3 GetNormal();
+    public abstract void DoCollision();
 }

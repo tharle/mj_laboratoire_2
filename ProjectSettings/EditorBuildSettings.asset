@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TopView.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/SideView2Wall.unity
+    guid: a674c3fc4466663419ebc55e8886827e
+  - enabled: 1
+    path: Assets/Scenes/SideView4Wall.unity
+    guid: 82959eb50c500014498838e35cf18a69
   m_configObjects: {}

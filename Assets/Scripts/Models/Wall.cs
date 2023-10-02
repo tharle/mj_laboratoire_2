@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Wall : Obstacle
 {
-    [SerializeField]
-    private Vector3 m_Normal = Vector3.left;
-
-    public override Vector3 GetNormal()
+    public override void DoCollision()
     {
-        return m_Normal;
+        // il y a rien a faire
     }
 }
